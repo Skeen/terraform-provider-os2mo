@@ -1,5 +1,5 @@
 ---
-page_title: "coffee Data Source - terraform-provider-hashicups"
+page_title: "coffee Data Source - terraform-provider-os2mo"
 subcategory: ""
 description: |-
   The coffee data source allows you to retrieve information all available HashiCups coffees.
@@ -12,7 +12,7 @@ The coffee data source allows you to retrieve information all available HashiCup
 ## Example Usage
 
 ```terraform
-data "hashicups_coffees" "all" {}
+data "os2mo_coffees" "all" {}
 
 ```
 

@@ -1,11 +1,11 @@
 ---
-page_title: "order Resource - terraform-provider-hashicups"
+page_title: "order Resource - terraform-provider-os2mo"
 subcategory: ""
 description: |-
   The order resource allows you to configure a HashiCups order.
 ---
 
-# Resource `hashicups_order`
+# Resource `os2mo_order`
 
 -> Visit the [Perform CRUD operations with Providers](https://learn.hashicorp.com/tutorials/terraform/provider-use?in=terraform/providers&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) Learn tutorial for an interactive getting started experience.
 
@@ -14,7 +14,7 @@ The order resource allows you to configure a HashiCups order.
 ## Example Usage
 
 ```terraform
-resource "hashicups_order" "edu" {
+resource "os2mo_order" "edu" {
   items {
     coffee {
       id = 3

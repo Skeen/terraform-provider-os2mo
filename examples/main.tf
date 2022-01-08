@@ -1,13 +1,13 @@
 terraform {
   required_providers {
-    hashicups = {
+    os2mo = {
       versions = ["0.3.0"]
-      source = "hashicorp.com/edu/hashicups"
+      source = "hashicorp.com/edu/os2mo"
     }
   }
 }
 
-provider "hashicups" {
+provider "os2mo" {
   username = "education"
   password = "test123"
 }
@@ -22,15 +22,15 @@ output "psl" {
   value = module.psl.coffee
 }
 
-data "hashicups_order" "order" {
+data "os2mo_order" "order" {
   id = 1
 }
 
 output "order" {
-  value = data.hashicups_order.order
+  value = data.os2mo_order.order
 }
 
-resource "hashicups_order" "edu" {
+resource "os2mo_order" "edu" {
   items {
     coffee {
       id = 3
@@ -46,14 +46,14 @@ resource "hashicups_order" "edu" {
 }
 
 output "edu_order" {
-  value = hashicups_order.edu
+  value = os2mo_order.edu
 }
 
 
-data "hashicups_order" "first" {
+data "os2mo_order" "first" {
   id = 1
 }
 
 output "first_order" {
-  value = data.hashicups_order.first
+  value = data.os2mo_order.first
 }

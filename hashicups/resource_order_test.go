@@ -1,10 +1,10 @@
-package hashicups
+package os2mo
 
 import (
 	"fmt"
 	"testing"
 
-	hc "github.com/hashicorp-demoapp/hashicups-client-go"
+	hc "github.com/hashicorp-demoapp/os2mo-client-go"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
@@ -21,7 +21,7 @@ func TestAccHashicupsOrderBasic(t *testing.T) {
 			{
 				Config: testAccCheckHashicupsOrderConfigBasic(coffeeID, quantity),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckHashicupsOrderExists("hashicups_order.new"),
+					testAccCheckHashicupsOrderExists("os2mo_order.new"),
 				),
 			},
 		},
@@ -32,7 +32,7 @@ func testAccCheckHashicupsOrderDestroy(s *terraform.State) error {
 	c := testAccProvider.Meta().(*hc.Client)
 
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "hashicups_order" {
+		if rs.Type != "os2mo_order" {
 			continue
 		}
 
@@ -49,7 +49,7 @@ func testAccCheckHashicupsOrderDestroy(s *terraform.State) error {
 
 func testAccCheckHashicupsOrderConfigBasic(coffeeID, quantity string) string {
 	return fmt.Sprintf(`
-	resource "hashicups_order" "new" {
+	resource "os2mo_order" "new" {
 		items {
 			coffee {
 				id = %s

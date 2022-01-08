@@ -1,11 +1,11 @@
-package hashicups
+package os2mo
 
 import (
 	"context"
 	"fmt"
 	"strconv"
 
-	hc "github.com/hashicorp-demoapp/hashicups-client-go"
+	hc "github.com/hashicorp-demoapp/os2mo-client-go"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )

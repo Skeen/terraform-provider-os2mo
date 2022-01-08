@@ -1,4 +1,4 @@
-package hashicups
+package os2mo
 
 import (
 	"os"
@@ -13,7 +13,7 @@ var testAccProvider *schema.Provider
 func init() {
 	testAccProvider = Provider()
 	testAccProviders = map[string]*schema.Provider{
-		"hashicups": testAccProvider,
+		"os2mo": testAccProvider,
 	}
 }
 

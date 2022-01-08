@@ -1,19 +1,19 @@
 terraform {
   required_providers {
-    hashicups = {
+    os2mo = {
       version = "0.2"
-      source  = "hashicorp.com/edu/hashicups"
+      source  = "hashicorp.com/edu/os2mo"
     }
   }
 }
 
-provider "hashicups" {
+provider "os2mo" {
   username = "education"
   password = "test123"
 }
 
-resource "hashicups_order" "sample" {}
+resource "os2mo_order" "sample" {}
 
 output "sample_order" {
-  value = hashicups_order.sample
+  value = os2mo_order.sample
 }

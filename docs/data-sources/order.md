@@ -1,11 +1,11 @@
 ---
-page_title: "order Data Source - terraform-provider-hashicups"
+page_title: "order Data Source - terraform-provider-os2mo"
 subcategory: ""
 description: |-
   The order data source allows you to retrieve information about a particular HashiCups order.
 ---
 
-# Data Source `hashicups_order`
+# Data Source `os2mo_order`
 
 -> Visit the [Perform CRUD operations with Providers](https://learn.hashicorp.com/tutorials/terraform/provider-use?in=terraform/providers&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) Learn tutorial for an interactive getting started experience.
 
@@ -14,7 +14,7 @@ The order data source allows you to retrieve information about a particular Hash
 ## Example Usage
 
 ```terraform
-data "hashicups_order" "edu" {
+data "os2mo_order" "edu" {
   id = 1
 }
 ```

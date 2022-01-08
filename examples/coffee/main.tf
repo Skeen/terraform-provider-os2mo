@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    hashicups = {
+    os2mo = {
       versions = ["0.3.0"]
-      source = "hashicorp.com/edu/hashicups"
+      source = "hashicorp.com/edu/os2mo"
     }
   }
 }
@@ -12,17 +12,17 @@ variable "coffee_name" {
   default = "Vagrante espresso"
 }
 
-data "hashicups_coffees" "all" {}
+data "os2mo_coffees" "all" {}
 
 # Returns all coffees
 output "all_coffees" {
-  value = data.hashicups_coffees.all.coffees
+  value = data.os2mo_coffees.all.coffees
 }
 
 # Only returns packer spiced latte
 output "coffee" {
   value = {
-    for coffee in data.hashicups_coffees.all.coffees :
+    for coffee in data.os2mo_coffees.all.coffees :
     coffee.id => coffee
     if coffee.name == var.coffee_name
   }

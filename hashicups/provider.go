@@ -1,9 +1,9 @@
-package hashicups
+package os2mo
 
 import (
 	"context"
 
-	"github.com/hashicorp-demoapp/hashicups-client-go"
+	"github.com/hashicorp-demoapp/os2mo-client-go"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -30,11 +30,11 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"hashicups_order": resourceOrder(),
+			"os2mo_order": resourceOrder(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
-			"hashicups_coffees": dataSourceCoffees(),
-			"hashicups_order":   dataSourceOrder(),
+			"os2mo_coffees": dataSourceCoffees(),
+			"os2mo_order":   dataSourceOrder(),
 		},
 		ConfigureContextFunc: providerConfigure,
 	}
@@ -56,7 +56,7 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 	var diags diag.Diagnostics
 
 	if (username != "") && (password != "") {
-		c, err := hashicups.NewClient(host, &username, &password)
+		c, err := os2mo.NewClient(host, &username, &password)
 		if err != nil {
 			diags = append(diags, diag.Diagnostic{
 				Severity: diag.Error,
@@ -70,7 +70,7 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 		return c, diags
 	}
 
-	c, err := hashicups.NewClient(host, nil, nil)
+	c, err := os2mo.NewClient(host, nil, nil)
 	if err != nil {
 		diags = append(diags, diag.Diagnostic{
 			Severity: diag.Error,

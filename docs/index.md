@@ -22,7 +22,7 @@ Use the navigation to the left to read about the available resources.
 Do not keep your authentication password in HCL for production environments, use Terraform environment variables.
 
 ```terraform
-provider "hashicups" {
+provider "os2mo" {
   username = "education"
   password = "test123"
 }

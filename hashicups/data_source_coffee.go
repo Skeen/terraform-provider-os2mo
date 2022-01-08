@@ -1,4 +1,4 @@
-package hashicups
+package os2mo
 
 import (
 	"context"
