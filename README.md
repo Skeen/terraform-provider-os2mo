@@ -1,4 +1,4 @@
-# Terraform Provider Hashicups
+# Terraform Provider OS2mo
 
 This repo is a companion repo to the [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers) Learn collection. 
 
