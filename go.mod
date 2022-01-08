@@ -2,10 +2,7 @@ module terraform-provider-os2mo
 
 go 1.17
 
-require (
-	github.com/hashicorp-demoapp/os2mo-client-go v0.0.0-20200508203820-4c67e90efb8e
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.0-rc.2
-)
+require github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.0-rc.2
 
 require (
 	cloud.google.com/go v0.45.1 // indirect
@@ -15,6 +12,7 @@ require (
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.3.4 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.1 // indirect
