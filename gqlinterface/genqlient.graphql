@@ -1,0 +1,9 @@
+query getITSystems {
+  itsystems {
+    name
+    system_type
+    type
+    user_key
+    uuid
+  }
+}

@@ -7,9 +7,17 @@ terraform {
 }
 
 provider "os2mo" {
-  url = "http://localhost:5000"
+  url = "http://localhost:5000/graphql"
+}
+
+data "os2mo_itsystems" "all" {}
+
+output "itoutput" {
+  value = data.os2mo_itsystems.all
 }
 
 resource "os2mo_organisation" "root" {
-    name = "Wowzers"
+  name = "Wowzers2"
 }
+
+

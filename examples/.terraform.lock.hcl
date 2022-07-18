@@ -4,6 +4,6 @@
 provider "github.com/skeen/os2mo" {
   version = "0.3.1"
   hashes = [
-    "h1:pRFK+NxZTvwAoYvwLMnCqpw2WzkdHI9v55V4eaOP1PA=",
+    "h1:/0E62DenBsNZv64l5jMnbQO5fXTzbeAaigNiniRGfGI=",
   ]
 }

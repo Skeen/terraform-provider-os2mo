@@ -1,14 +1,14 @@
 package os2mo
 
 import (
-    "text/template"
+	"text/template"
 
-    "net/http"
-    "encoding/json"
+	"bytes"
 	"context"
-    "fmt"
-    "bytes"
-    "io/ioutil"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -29,14 +29,13 @@ func resourceOrganisation() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default: "root",
+				Default:  "root",
 			},
 			"user_key": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default: "root",
+				Default:  "root",
 			},
-
 		},
 		Importer: &schema.ResourceImporter{
 			State: schema.ImportStatePassthrough,
@@ -45,27 +44,27 @@ func resourceOrganisation() *schema.Resource {
 }
 
 type UUIDStruct struct {
-    Uuid string
+	Uuid string
 }
 
 type OrganisationArgs struct {
-    Name string
-    UserKey string
+	Name    string
+	UserKey string
 }
 
 func resourceOrganisationCreate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
-    // url := m.(*string)
-    url := "http://localhost:8080/organisation/organisation"
-    fmt.Println("URL:>", url)
+	// url := m.(*string)
+	url := "http://localhost:8080/organisation/organisation"
+	fmt.Println("URL:>", url)
 
-    // var diags diag.Diagnostics
+	// var diags diag.Diagnostics
 
-    name := d.Get("name").(string)
-    user_key := d.Get("user_key").(string)
+	name := d.Get("name").(string)
+	user_key := d.Get("user_key").(string)
 
-    org_args := OrganisationArgs{name, user_key}
+	org_args := OrganisationArgs{name, user_key}
 
-    tmpl, err := template.New("org_json").Parse(`
+	tmpl, err := template.New("org_json").Parse(`
     {
       "attributter": {
         "organisationegenskaber": [
@@ -93,55 +92,59 @@ func resourceOrganisationCreate(ctx context.Context, d *schema.ResourceData, m i
     }
     `)
 
-    if err != nil { panic(err) }
-
-    var tpl bytes.Buffer
-
-    err = tmpl.Execute(&tpl, org_args)
-    if err != nil { panic(err) }
-
-    result := tpl.String()
-    fmt.Println("json str:", result)
-
-    var jsonStr = []byte(result)
-    fmt.Println("json bytes:", jsonStr)
-
-    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-    req.Header.Set("Content-Type", "application/json")
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    if err != nil {
-		fmt.Println("error:", err)
-        return diag.FromErr(err)
-    }
-    defer resp.Body.Close()
-
-    fmt.Println("response Status:", resp.Status)
-    fmt.Println("response Headers:", resp.Header)
-    body, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println("response Body:", string(body))
-
-    var uuid_struct UUIDStruct
-    unmarshal_err := json.Unmarshal([]byte(body), &uuid_struct)
-    if unmarshal_err != nil {
-		fmt.Println("error:", unmarshal_err)
-        return diag.FromErr(unmarshal_err)
+	if err != nil {
+		panic(err)
 	}
-    uuid := uuid_struct.Uuid
-    d.SetId(uuid)
 
-    return nil
+	var tpl bytes.Buffer
+
+	err = tmpl.Execute(&tpl, org_args)
+	if err != nil {
+		panic(err)
+	}
+
+	result := tpl.String()
+	fmt.Println("json str:", result)
+
+	var jsonStr = []byte(result)
+	fmt.Println("json bytes:", jsonStr)
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("error:", err)
+		return diag.FromErr(err)
+	}
+	defer resp.Body.Close()
+
+	fmt.Println("response Status:", resp.Status)
+	fmt.Println("response Headers:", resp.Header)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("response Body:", string(body))
+
+	var uuid_struct UUIDStruct
+	unmarshal_err := json.Unmarshal([]byte(body), &uuid_struct)
+	if unmarshal_err != nil {
+		fmt.Println("error:", unmarshal_err)
+		return diag.FromErr(unmarshal_err)
+	}
+	uuid := uuid_struct.Uuid
+	d.SetId(uuid)
+
+	return nil
 }
 
 func resourceOrganisationRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
-    return nil
+	return nil
 }
 
 func resourceOrganisationUpdate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
-    return nil
+	return nil
 }
 
 func resourceOrganisationDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
-    return nil
+	return nil
 }
