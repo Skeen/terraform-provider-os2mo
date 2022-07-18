@@ -1,6 +1,6 @@
 module terraform-provider-os2mo
 
-go 1.17
+go 1.18
 
 require github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.0-rc.2
 

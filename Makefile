@@ -7,7 +7,10 @@ OS_ARCH=linux_amd64
 
 default: install
 
-terraform-provider-os2mo: *.go */*.go go.mod test
+os2mo/generated.go:
+	cd gqlinterface && go run github.com/Khan/genqlient
+
+terraform-provider-os2mo: os2mo/*.go os2mo/generated.go test
 	go build .
 
 release:

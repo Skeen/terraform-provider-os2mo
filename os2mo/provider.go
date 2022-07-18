@@ -38,6 +38,7 @@ func Provider() *schema.Provider {
 			"os2mo_organisation": resourceOrganisation(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
+			"os2mo_itsystem":  dataSourcesItsystem(),
 			"os2mo_itsystems": dataSourcesItsystems(),
 		},
 		ConfigureContextFunc: providerConfigure,
